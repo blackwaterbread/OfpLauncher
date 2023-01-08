@@ -69,9 +69,13 @@ namespace OfpLauncher
             var currentItem = LstMods.Items[e.Index];
 
             if (e.NewValue == CheckState.Unchecked)
+            {
                 currentItem.Selected = false;
+            }
             else if (e.NewValue == CheckState.Checked)
+            {
                 currentItem.Selected = true;
+            }
 
             LstMods_ItemSelectionChanged(
                 sender, 
@@ -86,7 +90,14 @@ namespace OfpLauncher
             
             lastItemChecked = e.Item;
             e.Item.Checked = true;
-            SelectedMod = e.Item.SubItems[1].Text;
+            if (e.IsSelected)
+            {
+                SelectedMod = e.Item.SubItems[1].Text;
+            }
+            else
+            {
+                SelectedMod = "";
+            }
         }
 
         private void chkHost_CheckedChanged(object sender, EventArgs e)
