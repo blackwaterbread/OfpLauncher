@@ -1,0 +1,19 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OfpLauncher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Mods" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;BOI 4.8|@boi4.8&lt;/string&gt;
+  &lt;string&gt;Yugo|@xrofp&lt;/string&gt;
+  &lt;string&gt;BW|@80+Islands1.3;@res-z;@BW@DVD1.79&lt;/string&gt;
+  &lt;string&gt;TZK 4.0.3|@TZK_4.0.0;@TZK_4.0.3;@TZK_Islands;@80+Islands1.3&lt;/string&gt;
+  &lt;string&gt;TZK 4.0.6|@TZK_4.0.0;@TZK_4.0.3;@TZK_4.0.4;@TZK_4.0.5;@TZK_4.0.6;@TZK_Islands;@TZK_Islands_v2;@80+Islands1.3&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="BaseParameters" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
