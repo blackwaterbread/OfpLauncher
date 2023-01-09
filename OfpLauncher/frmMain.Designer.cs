@@ -64,10 +64,10 @@
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(12, 14);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(500, 360);
+            this.groupBox1.Size = new System.Drawing.Size(500, 358);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -95,10 +95,10 @@
             this.LstMods.GridLines = true;
             this.LstMods.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.LstMods.HideSelection = false;
-            this.LstMods.Location = new System.Drawing.Point(6, 18);
+            this.LstMods.Location = new System.Drawing.Point(6, 15);
             this.LstMods.MultiSelect = false;
             this.LstMods.Name = "LstMods";
-            this.LstMods.Size = new System.Drawing.Size(488, 215);
+            this.LstMods.Size = new System.Drawing.Size(488, 210);
             this.LstMods.TabIndex = 2;
             this.LstMods.UseCompatibleStateImageBehavior = false;
             this.LstMods.View = System.Windows.Forms.View.Details;
@@ -122,7 +122,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtHostname);
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
-            this.groupBox2.Location = new System.Drawing.Point(202, 237);
+            this.groupBox2.Location = new System.Drawing.Point(202, 233);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(292, 94);
             this.groupBox2.TabIndex = 4;
@@ -188,7 +188,7 @@
             this.groupBox4.Controls.Add(this.chkNosplash);
             this.groupBox4.Controls.Add(this.chkNomap);
             this.groupBox4.ForeColor = System.Drawing.Color.Black;
-            this.groupBox4.Location = new System.Drawing.Point(6, 237);
+            this.groupBox4.Location = new System.Drawing.Point(6, 233);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(190, 94);
             this.groupBox4.TabIndex = 2;
@@ -242,7 +242,7 @@
             // 
             // btnGameStart
             // 
-            this.btnGameStart.Location = new System.Drawing.Point(365, 380);
+            this.btnGameStart.Location = new System.Drawing.Point(365, 376);
             this.btnGameStart.Name = "btnGameStart";
             this.btnGameStart.Size = new System.Drawing.Size(147, 40);
             this.btnGameStart.TabIndex = 1;
@@ -252,7 +252,7 @@
             // 
             // btnSetup32
             // 
-            this.btnSetup32.Location = new System.Drawing.Point(12, 380);
+            this.btnSetup32.Location = new System.Drawing.Point(12, 376);
             this.btnSetup32.Name = "btnSetup32";
             this.btnSetup32.Size = new System.Drawing.Size(95, 40);
             this.btnSetup32.TabIndex = 2;
@@ -262,7 +262,7 @@
             // 
             // btnSetup64
             // 
-            this.btnSetup64.Location = new System.Drawing.Point(113, 380);
+            this.btnSetup64.Location = new System.Drawing.Point(113, 376);
             this.btnSetup64.Name = "btnSetup64";
             this.btnSetup64.Size = new System.Drawing.Size(95, 40);
             this.btnSetup64.TabIndex = 3;
@@ -272,11 +272,11 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(9, 3);
+            this.label4.Location = new System.Drawing.Point(127, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(504, 19);
+            this.label4.Size = new System.Drawing.Size(388, 19);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Revision 2";
+            this.label4.Text = "Revision 4";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblGithub
@@ -285,7 +285,7 @@
             this.lblGithub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblGithub.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGithub.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblGithub.Location = new System.Drawing.Point(15, 425);
+            this.lblGithub.Location = new System.Drawing.Point(15, 419);
             this.lblGithub.Name = "lblGithub";
             this.lblGithub.Size = new System.Drawing.Size(500, 16);
             this.lblGithub.TabIndex = 5;
@@ -298,7 +298,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(524, 451);
+            this.ClientSize = new System.Drawing.Size(524, 441);
             this.Controls.Add(this.lblGithub);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSetup64);

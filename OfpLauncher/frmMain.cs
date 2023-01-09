@@ -1,14 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Collections.Specialized;
+using System.Configuration;
 
 namespace OfpLauncher
 {
     public partial class frmMain : Form
     {
-        private string CurrentPath = Application.StartupPath;
+        private static string CurrentPath = Application.StartupPath;
+        private static string ConfigPath = CurrentPath + "/configs.json";
 
         private ListViewItem lastItemChecked;
         private string SelectedMod = "";
@@ -18,16 +22,17 @@ namespace OfpLauncher
             InitializeComponent();
             try
             {
-                foreach (string mod in Properties.Settings.Default.Mods)
+                var configs = JObject.Parse(File.ReadAllText(ConfigPath));
+                var mods = (JObject)configs["mods"];
+                foreach (var mod in mods)
                 {
-                    string[] sp = mod.Split('|');
-                    LstMods.Items.Add(sp[0]).SubItems.Add(sp[1]);
+                    LstMods.Items.Add(mod.Key).SubItems.Add(mod.Value.ToString());
                 }
                 lastItemChecked = LstMods.Items[0];
                 lastItemChecked.Selected = true;
                 lastItemChecked.Checked = true;
                 SelectedMod = lastItemChecked.SubItems[1].Text;
-                txtParameters.Text = Properties.Settings.Default.BaseParameters;
+                txtParameters.Text = configs["parameters"].ToString();
             }
             catch (Exception ex)
             {
@@ -47,8 +52,16 @@ namespace OfpLauncher
                 chkNotConnect.Checked == true ? "" : $"-connect={txtHostname.Text} -port={txtPort.Text}"
             };
 
-            Properties.Settings.Default.BaseParameters = txtParameters.Text;
-            Properties.Settings.Default.Save();
+            try
+            {
+                var configs = JObject.Parse(File.ReadAllText(ConfigPath));
+                configs["parameters"] = txtParameters.Text;
+                File.WriteAllText(ConfigPath, configs.ToString());
+            }
+            catch (Exception ex)
+            {
+                // some error an saving configs
+            }
 
             try
             {
@@ -91,6 +104,11 @@ namespace OfpLauncher
         private void btnSetup64_Click(object sender, EventArgs e)
         {
             Process.Start($"{CurrentPath}/setup-x64.reg");
+        }
+
+        private void btnSettingsLoad_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
