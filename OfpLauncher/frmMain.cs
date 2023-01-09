@@ -64,40 +64,12 @@ namespace OfpLauncher
                 Application.Exit();
         }
 
-        private void LstMods_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            var currentItem = LstMods.Items[e.Index];
-
-            if (e.NewValue == CheckState.Unchecked)
-            {
-                currentItem.Selected = false;
-            }
-            else if (e.NewValue == CheckState.Checked)
-            {
-                currentItem.Selected = true;
-            }
-
-            LstMods_ItemSelectionChanged(
-                sender, 
-                new ListViewItemSelectionChangedEventArgs(currentItem, currentItem.Index, currentItem.Selected)
-            );
-        }
-
         private void LstMods_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            if (lastItemChecked.Checked && lastItemChecked != e.Item)
-                lastItemChecked.Checked = false;
-            
-            lastItemChecked = e.Item;
-            e.Item.Checked = true;
             if (e.IsSelected)
-            {
                 SelectedMod = e.Item.SubItems[1].Text;
-            }
             else
-            {
                 SelectedMod = "";
-            }
         }
 
         private void chkHost_CheckedChanged(object sender, EventArgs e)

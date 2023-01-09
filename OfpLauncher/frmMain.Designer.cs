@@ -87,7 +87,6 @@
             // 
             this.LstMods.BackColor = System.Drawing.Color.White;
             this.LstMods.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LstMods.CheckBoxes = true;
             this.LstMods.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnModName,
             this.columnAddons});
@@ -103,7 +102,6 @@
             this.LstMods.TabIndex = 2;
             this.LstMods.UseCompatibleStateImageBehavior = false;
             this.LstMods.View = System.Windows.Forms.View.Details;
-            this.LstMods.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LstMods_ItemCheck);
             this.LstMods.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.LstMods_ItemSelectionChanged);
             // 
             // columnModName
@@ -278,7 +276,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(504, 19);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Revision 1";
+            this.label4.Text = "Revision 2";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblGithub
