@@ -1,17 +1,21 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Text;
 using System.Configuration;
+using Microsoft.VisualBasic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using OfpLauncher.Lib;
 
 namespace OfpLauncher
 {
     public partial class frmMain : Form
     {
-        private static string CurrentPath = Application.StartupPath;
+        public static string CurrentPath = Application.StartupPath;
         private static string ConfigPath = CurrentPath + "/configs.json";
 
         private ListViewItem lastItemChecked;
@@ -106,9 +110,60 @@ namespace OfpLauncher
             Process.Start($"{CurrentPath}/setup-x64.reg");
         }
 
-        private void btnSettingsLoad_Click(object sender, EventArgs e)
+        private void btnWide_Click(object sender, EventArgs e)
         {
+            var fValues = new Dictionary<string, string>() {
+                { "fovTop", "0.750000;" },
+                { "fovLeft", "1.333333;" },
+                { "uiTopLeftX", "0.125000;" },
+                { "uiTopLeftY", "0.000000;" },
+                { "uiBottomRightX", "0.875000;" },
+                { "uiBottomRightY", "1.000000;" },
+            };
 
+            var username = Interaction.InputBox("수정할 컨픽의 사용자명을 입력하세요", "해상도 패치");
+            var file = new FileInfo($"{CurrentPath}/Users/{username}/UserInfo.cfg");
+            if (file.Exists)
+            {
+                try
+                {
+                    var cfg = CfgManager.Read(file);
+                    foreach (var v in fValues)
+                    {
+                        cfg.Configs[v.Key] = v.Value;
+                    }
+                    CfgManager.Write(cfg, file);
+                    MessageBox.Show("해상도 패치가 완료되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"작업 도중에 에러가 발생하였습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("패치할 cfg 파일이 존재하지 않는 것 같습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnServerConfig_Click(object sender, EventArgs e)
+        {
+            var server = new frmServer();
+            server.ShowDialog();
+        }
+
+        private void btnServerStart_Click(object sender, EventArgs e)
+        {
+            var mods = $"-mod={SelectedMod}";
+            try
+            {
+                Process.Start($"{CurrentPath}/ArmAResistance_Server.exe", $"-nomap {mods} -port=2302 -config=server.cfg -netlog");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"서버 파일이 없거나 올바른 경로에 설치하지 않은 것 같습니다: {ex.Message}", "실행 오류 발생", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
     }
 }

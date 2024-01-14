@@ -50,6 +50,9 @@
             this.btnSetup64 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lblGithub = new System.Windows.Forms.Label();
+            this.btnWide = new System.Windows.Forms.Button();
+            this.btnServerConfig = new System.Windows.Forms.Button();
+            this.btnServerStart = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -67,16 +70,17 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(500, 358);
+            this.groupBox1.Size = new System.Drawing.Size(500, 357);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "모드 선택";
             // 
             // chkTerminateWhenStart
             // 
             this.chkTerminateWhenStart.AutoSize = true;
             this.chkTerminateWhenStart.Checked = true;
             this.chkTerminateWhenStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTerminateWhenStart.Location = new System.Drawing.Point(348, 334);
+            this.chkTerminateWhenStart.Location = new System.Drawing.Point(348, 333);
             this.chkTerminateWhenStart.Name = "chkTerminateWhenStart";
             this.chkTerminateWhenStart.Size = new System.Drawing.Size(146, 19);
             this.chkTerminateWhenStart.TabIndex = 6;
@@ -242,17 +246,17 @@
             // 
             // btnGameStart
             // 
-            this.btnGameStart.Location = new System.Drawing.Point(365, 376);
+            this.btnGameStart.Location = new System.Drawing.Point(215, 375);
             this.btnGameStart.Name = "btnGameStart";
-            this.btnGameStart.Size = new System.Drawing.Size(147, 40);
+            this.btnGameStart.Size = new System.Drawing.Size(300, 40);
             this.btnGameStart.TabIndex = 1;
-            this.btnGameStart.Text = "실행";
+            this.btnGameStart.Text = "게임 실행";
             this.btnGameStart.UseVisualStyleBackColor = true;
             this.btnGameStart.Click += new System.EventHandler(this.btnGameStart_Click);
             // 
             // btnSetup32
             // 
-            this.btnSetup32.Location = new System.Drawing.Point(12, 376);
+            this.btnSetup32.Location = new System.Drawing.Point(15, 375);
             this.btnSetup32.Name = "btnSetup32";
             this.btnSetup32.Size = new System.Drawing.Size(95, 40);
             this.btnSetup32.TabIndex = 2;
@@ -262,7 +266,7 @@
             // 
             // btnSetup64
             // 
-            this.btnSetup64.Location = new System.Drawing.Point(113, 376);
+            this.btnSetup64.Location = new System.Drawing.Point(113, 375);
             this.btnSetup64.Name = "btnSetup64";
             this.btnSetup64.Size = new System.Drawing.Size(95, 40);
             this.btnSetup64.TabIndex = 3;
@@ -276,7 +280,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(388, 19);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Revision 4";
+            this.label4.Text = "Revision 5";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblGithub
@@ -285,20 +289,54 @@
             this.lblGithub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblGithub.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGithub.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblGithub.Location = new System.Drawing.Point(15, 419);
+            this.lblGithub.Location = new System.Drawing.Point(12, 454);
             this.lblGithub.Name = "lblGithub";
             this.lblGithub.Size = new System.Drawing.Size(500, 16);
             this.lblGithub.TabIndex = 5;
-            this.lblGithub.Text = "Launcher.App - @dayrain";
+            this.lblGithub.Text = "OfpLauncher - @dayrain";
             this.lblGithub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblGithub.Click += new System.EventHandler(this.lblGithub_Click);
+            // 
+            // btnWide
+            // 
+            this.btnWide.Location = new System.Drawing.Point(15, 421);
+            this.btnWide.Name = "btnWide";
+            this.btnWide.Size = new System.Drawing.Size(193, 30);
+            this.btnWide.TabIndex = 7;
+            this.btnWide.Text = "16:9 해상도 패치";
+            this.btnWide.UseVisualStyleBackColor = true;
+            this.btnWide.Click += new System.EventHandler(this.btnWide_Click);
+            // 
+            // btnServerConfig
+            // 
+            this.btnServerConfig.Enabled = false;
+            this.btnServerConfig.Location = new System.Drawing.Point(215, 421);
+            this.btnServerConfig.Name = "btnServerConfig";
+            this.btnServerConfig.Size = new System.Drawing.Size(147, 30);
+            this.btnServerConfig.TabIndex = 7;
+            this.btnServerConfig.Text = "서버 설정";
+            this.btnServerConfig.UseVisualStyleBackColor = true;
+            this.btnServerConfig.Click += new System.EventHandler(this.btnServerConfig_Click);
+            // 
+            // btnServerStart
+            // 
+            this.btnServerStart.Location = new System.Drawing.Point(368, 421);
+            this.btnServerStart.Name = "btnServerStart";
+            this.btnServerStart.Size = new System.Drawing.Size(147, 30);
+            this.btnServerStart.TabIndex = 8;
+            this.btnServerStart.Text = "서버 실행";
+            this.btnServerStart.UseVisualStyleBackColor = true;
+            this.btnServerStart.Click += new System.EventHandler(this.btnServerStart_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(524, 441);
+            this.ClientSize = new System.Drawing.Size(524, 481);
+            this.Controls.Add(this.btnWide);
+            this.Controls.Add(this.btnServerStart);
+            this.Controls.Add(this.btnServerConfig);
             this.Controls.Add(this.lblGithub);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSetup64);
@@ -346,6 +384,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblGithub;
         private System.Windows.Forms.CheckBox chkTerminateWhenStart;
+        private System.Windows.Forms.Button btnWide;
+        private System.Windows.Forms.Button btnServerConfig;
+        private System.Windows.Forms.Button btnServerStart;
     }
 }
 
