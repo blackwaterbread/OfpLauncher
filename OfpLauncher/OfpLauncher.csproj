@@ -85,6 +85,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="configs.json" />
+    <None Include="lockmouse2.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,6 +100,7 @@
   <ItemGroup>
     <Content Include="Assets\icon.ico" />
     <Content Include="icon.ico" />
+    <Content Include="lockmouse2.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

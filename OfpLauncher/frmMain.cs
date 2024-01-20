@@ -20,6 +20,8 @@ namespace OfpLauncher
 
         private ListViewItem lastItemChecked;
         private string SelectedMod = "";
+        private string WindowedX = "1280";
+        private string WindowedY = "720";
 
         public frmMain()
         {
@@ -37,6 +39,9 @@ namespace OfpLauncher
                 lastItemChecked.Checked = true;
                 SelectedMod = lastItemChecked.SubItems[1].Text;
                 txtParameters.Text = configs["parameters"].ToString();
+                var windowed = (JObject)configs["windowed"];
+                WindowedX = windowed["width"].ToString();
+                WindowedY = windowed["height"].ToString();
             }
             catch (Exception ex)
             {
@@ -45,7 +50,7 @@ namespace OfpLauncher
             }
         }
 
-        private void btnGameStart_Click(object sender, EventArgs e)
+        private string getParameters()
         {
             var parameters = new string[]
             {
@@ -55,7 +60,11 @@ namespace OfpLauncher
                 txtParameters.Text,
                 chkNotConnect.Checked == true ? "" : $"-connect={txtHostname.Text} -port={txtPort.Text}"
             };
+            return string.Join(" ", parameters.Except(new string[] { "" }));
+        }
 
+        private void saveParameters()
+        {
             try
             {
                 var configs = JObject.Parse(File.ReadAllText(ConfigPath));
@@ -64,12 +73,38 @@ namespace OfpLauncher
             }
             catch (Exception ex)
             {
-                // some error an saving configs
+                MessageBox.Show($"파라미터 저장 도중에 에러가 발생하였습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnGameStartFullScreen_Click(object sender, EventArgs e)
+        {
+            var parameters = getParameters();
+            saveParameters();
 
             try
             {
-                Process.Start($"{CurrentPath}/ArmAResistance.exe", $"{string.Join(" ", parameters.Except(new string[] { "" }))}");
+                Process.Start($"{CurrentPath}/ArmAResistance.exe", $"{parameters}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"실행 파일이 없거나 올바른 경로에 설치하지 않은 것 같습니다: {ex.Message}", "실행 오류 발생", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+
+            if (chkTerminateWhenStart.Checked)
+                Application.Exit();
+        }
+
+        private void btnGameStartWindowed_Click(object sender, EventArgs e)
+        {
+            var parameters = getParameters();
+            saveParameters();
+
+            try
+            {
+                Process.Start($"{CurrentPath}/lockmouse2.exe", $"-minimize -center -quit");
+                Process.Start($"{CurrentPath}/ArmAResistance.exe", $"{parameters} -window -x={WindowedX} -y={WindowedY}");
             }
             catch (Exception ex)
             {
@@ -110,17 +145,8 @@ namespace OfpLauncher
             Process.Start($"{CurrentPath}/setup-x64.reg");
         }
 
-        private void btnWide_Click(object sender, EventArgs e)
+        private void AspectRatioPatch(Dictionary<string, string> values)
         {
-            var fValues = new Dictionary<string, string>() {
-                { "fovTop", "0.750000;" },
-                { "fovLeft", "1.333333;" },
-                { "uiTopLeftX", "0.125000;" },
-                { "uiTopLeftY", "0.000000;" },
-                { "uiBottomRightX", "0.875000;" },
-                { "uiBottomRightY", "1.000000;" },
-            };
-
             var username = Interaction.InputBox("수정할 컨픽의 사용자명을 입력하세요", "해상도 패치");
             var file = new FileInfo($"{CurrentPath}/Users/{username}/UserInfo.cfg");
             if (file.Exists)
@@ -128,7 +154,7 @@ namespace OfpLauncher
                 try
                 {
                     var cfg = CfgManager.Read(file);
-                    foreach (var v in fValues)
+                    foreach (var v in values)
                     {
                         cfg.Configs[v.Key] = v.Value;
                     }
@@ -144,6 +170,32 @@ namespace OfpLauncher
             {
                 MessageBox.Show("패치할 cfg 파일이 존재하지 않는 것 같습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnWide_Click(object sender, EventArgs e)
+        {
+            var WideValues = new Dictionary<string, string>() {
+                { "fovTop", "0.750000;" },
+                { "fovLeft", "1.333333;" },
+                { "uiTopLeftX", "0.125000;" },
+                { "uiTopLeftY", "0.000000;" },
+                { "uiBottomRightX", "0.875000;" },
+                { "uiBottomRightY", "1.000000;" },
+            };
+            AspectRatioPatch(WideValues);
+        }
+
+        private void btnWideRollback_Click(object sender, EventArgs e)
+        {
+            var DefaultValues = new Dictionary<string, string>() {
+                { "fovTop", "0.750000;" },
+                { "fovLeft", "1.000000;" },
+                { "uiTopLeftX", "0.000000;" },
+                { "uiTopLeftY", "0.000000;" },
+                { "uiBottomRightX", "1.000000;" },
+                { "uiBottomRightY", "1.000000;" },
+            };
+            AspectRatioPatch(DefaultValues);
         }
 
         private void btnServerConfig_Click(object sender, EventArgs e)

@@ -45,14 +45,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkNosplash = new System.Windows.Forms.CheckBox();
             this.chkNomap = new System.Windows.Forms.CheckBox();
-            this.btnGameStart = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnGameStartFullScreen = new System.Windows.Forms.Button();
             this.btnSetup32 = new System.Windows.Forms.Button();
             this.btnSetup64 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblGithub = new System.Windows.Forms.Label();
             this.btnWide = new System.Windows.Forms.Button();
             this.btnServerConfig = new System.Windows.Forms.Button();
             this.btnServerStart = new System.Windows.Forms.Button();
+            this.btnWideRollback = new System.Windows.Forms.Button();
+            this.btnGameStartWindowed = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -65,12 +67,13 @@
             this.groupBox1.Controls.Add(this.LstMods);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.groupBox4);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(500, 357);
+            this.groupBox1.Size = new System.Drawing.Size(520, 369);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "모드 선택";
@@ -80,7 +83,7 @@
             this.chkTerminateWhenStart.AutoSize = true;
             this.chkTerminateWhenStart.Checked = true;
             this.chkTerminateWhenStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTerminateWhenStart.Location = new System.Drawing.Point(348, 333);
+            this.chkTerminateWhenStart.Location = new System.Drawing.Point(368, 343);
             this.chkTerminateWhenStart.Name = "chkTerminateWhenStart";
             this.chkTerminateWhenStart.Size = new System.Drawing.Size(146, 19);
             this.chkTerminateWhenStart.TabIndex = 6;
@@ -102,7 +105,7 @@
             this.LstMods.Location = new System.Drawing.Point(6, 15);
             this.LstMods.MultiSelect = false;
             this.LstMods.Name = "LstMods";
-            this.LstMods.Size = new System.Drawing.Size(488, 210);
+            this.LstMods.Size = new System.Drawing.Size(508, 222);
             this.LstMods.TabIndex = 2;
             this.LstMods.UseCompatibleStateImageBehavior = false;
             this.LstMods.View = System.Windows.Forms.View.Details;
@@ -126,7 +129,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtHostname);
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
-            this.groupBox2.Location = new System.Drawing.Point(202, 233);
+            this.groupBox2.Location = new System.Drawing.Point(222, 243);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(292, 94);
             this.groupBox2.TabIndex = 4;
@@ -192,9 +195,9 @@
             this.groupBox4.Controls.Add(this.chkNosplash);
             this.groupBox4.Controls.Add(this.chkNomap);
             this.groupBox4.ForeColor = System.Drawing.Color.Black;
-            this.groupBox4.Location = new System.Drawing.Point(6, 233);
+            this.groupBox4.Location = new System.Drawing.Point(6, 243);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(190, 94);
+            this.groupBox4.Size = new System.Drawing.Size(207, 94);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "파라미터 설정";
@@ -204,7 +207,7 @@
             this.txtParameters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtParameters.Location = new System.Drawing.Point(9, 57);
             this.txtParameters.Name = "txtParameters";
-            this.txtParameters.Size = new System.Drawing.Size(175, 23);
+            this.txtParameters.Size = new System.Drawing.Size(192, 23);
             this.txtParameters.TabIndex = 3;
             // 
             // label1
@@ -244,19 +247,28 @@
             this.chkNomap.Text = "nomap";
             this.chkNomap.UseVisualStyleBackColor = true;
             // 
-            // btnGameStart
+            // label4
             // 
-            this.btnGameStart.Location = new System.Drawing.Point(215, 375);
-            this.btnGameStart.Name = "btnGameStart";
-            this.btnGameStart.Size = new System.Drawing.Size(300, 40);
-            this.btnGameStart.TabIndex = 1;
-            this.btnGameStart.Text = "게임 실행";
-            this.btnGameStart.UseVisualStyleBackColor = true;
-            this.btnGameStart.Click += new System.EventHandler(this.btnGameStart_Click);
+            this.label4.Location = new System.Drawing.Point(6, 342);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(346, 19);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Revision 6";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnGameStartFullScreen
+            // 
+            this.btnGameStartFullScreen.Location = new System.Drawing.Point(385, 387);
+            this.btnGameStartFullScreen.Name = "btnGameStartFullScreen";
+            this.btnGameStartFullScreen.Size = new System.Drawing.Size(147, 40);
+            this.btnGameStartFullScreen.TabIndex = 1;
+            this.btnGameStartFullScreen.Text = "게임 실행 (전체화면)";
+            this.btnGameStartFullScreen.UseVisualStyleBackColor = true;
+            this.btnGameStartFullScreen.Click += new System.EventHandler(this.btnGameStartFullScreen_Click);
             // 
             // btnSetup32
             // 
-            this.btnSetup32.Location = new System.Drawing.Point(15, 375);
+            this.btnSetup32.Location = new System.Drawing.Point(12, 387);
             this.btnSetup32.Name = "btnSetup32";
             this.btnSetup32.Size = new System.Drawing.Size(95, 40);
             this.btnSetup32.TabIndex = 2;
@@ -266,7 +278,7 @@
             // 
             // btnSetup64
             // 
-            this.btnSetup64.Location = new System.Drawing.Point(113, 375);
+            this.btnSetup64.Location = new System.Drawing.Point(12, 433);
             this.btnSetup64.Name = "btnSetup64";
             this.btnSetup64.Size = new System.Drawing.Size(95, 40);
             this.btnSetup64.TabIndex = 3;
@@ -274,24 +286,15 @@
             this.btnSetup64.UseVisualStyleBackColor = true;
             this.btnSetup64.Click += new System.EventHandler(this.btnSetup64_Click);
             // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(127, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(388, 19);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Revision 5";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblGithub
             // 
             this.lblGithub.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGithub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblGithub.Font = new System.Drawing.Font("맑은 고딕", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblGithub.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblGithub.Location = new System.Drawing.Point(12, 454);
+            this.lblGithub.Location = new System.Drawing.Point(12, 476);
             this.lblGithub.Name = "lblGithub";
-            this.lblGithub.Size = new System.Drawing.Size(500, 16);
+            this.lblGithub.Size = new System.Drawing.Size(520, 16);
             this.lblGithub.TabIndex = 5;
             this.lblGithub.Text = "OfpLauncher - @dayrain";
             this.lblGithub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -299,20 +302,20 @@
             // 
             // btnWide
             // 
-            this.btnWide.Location = new System.Drawing.Point(15, 421);
+            this.btnWide.Location = new System.Drawing.Point(114, 387);
             this.btnWide.Name = "btnWide";
-            this.btnWide.Size = new System.Drawing.Size(193, 30);
+            this.btnWide.Size = new System.Drawing.Size(112, 40);
             this.btnWide.TabIndex = 7;
-            this.btnWide.Text = "16:9 해상도 패치";
+            this.btnWide.Text = "16:9 화면비 패치";
             this.btnWide.UseVisualStyleBackColor = true;
             this.btnWide.Click += new System.EventHandler(this.btnWide_Click);
             // 
             // btnServerConfig
             // 
             this.btnServerConfig.Enabled = false;
-            this.btnServerConfig.Location = new System.Drawing.Point(215, 421);
+            this.btnServerConfig.Location = new System.Drawing.Point(232, 433);
             this.btnServerConfig.Name = "btnServerConfig";
-            this.btnServerConfig.Size = new System.Drawing.Size(147, 30);
+            this.btnServerConfig.Size = new System.Drawing.Size(147, 40);
             this.btnServerConfig.TabIndex = 7;
             this.btnServerConfig.Text = "서버 설정";
             this.btnServerConfig.UseVisualStyleBackColor = true;
@@ -320,28 +323,49 @@
             // 
             // btnServerStart
             // 
-            this.btnServerStart.Location = new System.Drawing.Point(368, 421);
+            this.btnServerStart.Location = new System.Drawing.Point(385, 433);
             this.btnServerStart.Name = "btnServerStart";
-            this.btnServerStart.Size = new System.Drawing.Size(147, 30);
+            this.btnServerStart.Size = new System.Drawing.Size(147, 40);
             this.btnServerStart.TabIndex = 8;
             this.btnServerStart.Text = "서버 실행";
             this.btnServerStart.UseVisualStyleBackColor = true;
             this.btnServerStart.Click += new System.EventHandler(this.btnServerStart_Click);
+            // 
+            // btnWideRollback
+            // 
+            this.btnWideRollback.Location = new System.Drawing.Point(113, 433);
+            this.btnWideRollback.Name = "btnWideRollback";
+            this.btnWideRollback.Size = new System.Drawing.Size(112, 40);
+            this.btnWideRollback.TabIndex = 9;
+            this.btnWideRollback.Text = "화면비 초기화";
+            this.btnWideRollback.UseVisualStyleBackColor = true;
+            this.btnWideRollback.Click += new System.EventHandler(this.btnWideRollback_Click);
+            // 
+            // btnGameStartWindowed
+            // 
+            this.btnGameStartWindowed.Location = new System.Drawing.Point(232, 387);
+            this.btnGameStartWindowed.Name = "btnGameStartWindowed";
+            this.btnGameStartWindowed.Size = new System.Drawing.Size(147, 40);
+            this.btnGameStartWindowed.TabIndex = 10;
+            this.btnGameStartWindowed.Text = "게임 실행 (창모드)";
+            this.btnGameStartWindowed.UseVisualStyleBackColor = true;
+            this.btnGameStartWindowed.Click += new System.EventHandler(this.btnGameStartWindowed_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(524, 481);
+            this.ClientSize = new System.Drawing.Size(544, 501);
+            this.Controls.Add(this.btnGameStartWindowed);
+            this.Controls.Add(this.btnWideRollback);
             this.Controls.Add(this.btnWide);
             this.Controls.Add(this.btnServerStart);
             this.Controls.Add(this.btnServerConfig);
             this.Controls.Add(this.lblGithub);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSetup64);
             this.Controls.Add(this.btnSetup32);
-            this.Controls.Add(this.btnGameStart);
+            this.Controls.Add(this.btnGameStartFullScreen);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ForeColor = System.Drawing.Color.Black;
@@ -364,7 +388,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnGameStart;
+        private System.Windows.Forms.Button btnGameStartFullScreen;
         private System.Windows.Forms.ListView LstMods;
         private System.Windows.Forms.ColumnHeader columnModName;
         private System.Windows.Forms.ColumnHeader columnAddons;
@@ -387,6 +411,8 @@
         private System.Windows.Forms.Button btnWide;
         private System.Windows.Forms.Button btnServerConfig;
         private System.Windows.Forms.Button btnServerStart;
+        private System.Windows.Forms.Button btnWideRollback;
+        private System.Windows.Forms.Button btnGameStartWindowed;
     }
 }
 

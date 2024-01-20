@@ -59,6 +59,7 @@ namespace OfpLauncher.Lib
                     {
                         // 원래는 class 파싱도 세세하게 처리해야하는데, 이 툴에선 화면비만 바꾸는게 목적이니까 대강 처리했음
                         line = line.Replace("\r\n", "").Trim();
+                        if (String.IsNullOrEmpty(line)) continue;
                         if (inClass)
                         {
                             if (line.Length >= 5 && line.Substring(0, 5) == "class") cDepth++;

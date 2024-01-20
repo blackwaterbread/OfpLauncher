@@ -1,10 +1,16 @@
 ﻿{
     "parameters": "",
+    "windowed": {
+        "width": 1920,
+        "height": 1080
+    },
 	"mods": {
+        "Vanila": "",
         "BOI 4.8": "@boi4.8",
         "Yugo": "@xrofp;@80+Islands1.3",
         "BW": "@80+Islands1.3;@res-z;@BW@DVD1.79",
         "TZK 4.0.3": "@TZK_4.0.0;@TZK_4.0.3;@TZK_Islands;@80+Islands1.3",
-        "TZK 4.0.6": "@TZK_4.0.0;@TZK_4.0.3;@TZK_4.0.4;@TZK_4.0.5;@TZK_4.0.6;@TZK_Islands;@TZK_Islands_v2;@80+Islands1.3"
+        "TZK 4.0.6": "@TZK_4.0.0;@TZK_4.0.3;@TZK_4.0.4;@TZK_4.0.5;@TZK_4.0.6;@TZK_Islands;@TZK_Islands_v2;@80+Islands1.3",
+        "WW2_MP": "@WW2_MP"
 	}
 }
