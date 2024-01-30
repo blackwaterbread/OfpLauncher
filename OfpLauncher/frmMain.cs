@@ -15,20 +15,15 @@ namespace OfpLauncher
 {
     public partial class frmMain : Form
     {
-        public static string CurrentPath = Application.StartupPath;
-        private static string ConfigPath = CurrentPath + "/configs.json";
-
         private ListViewItem lastItemChecked;
         private string SelectedMod = "";
-        private string WindowedX = "1280";
-        private string WindowedY = "720";
 
         public frmMain()
         {
             InitializeComponent();
             try
             {
-                var configs = JObject.Parse(File.ReadAllText(ConfigPath));
+                var configs = JObject.Parse(File.ReadAllText(Lib.Constants.ConfigPath));
                 var mods = (JObject)configs["mods"];
                 foreach (var mod in mods)
                 {
@@ -40,8 +35,8 @@ namespace OfpLauncher
                 SelectedMod = lastItemChecked.SubItems[1].Text;
                 txtParameters.Text = configs["parameters"].ToString();
                 var windowed = (JObject)configs["windowed"];
-                WindowedX = windowed["width"].ToString();
-                WindowedY = windowed["height"].ToString();
+                Lib.Constants.WindowedX = windowed["width"].ToString();
+                Lib.Constants.WindowedY = windowed["height"].ToString();
             }
             catch (Exception ex)
             {
@@ -67,9 +62,9 @@ namespace OfpLauncher
         {
             try
             {
-                var configs = JObject.Parse(File.ReadAllText(ConfigPath));
+                var configs = JObject.Parse(File.ReadAllText(Lib.Constants.ConfigPath));
                 configs["parameters"] = txtParameters.Text;
-                File.WriteAllText(ConfigPath, configs.ToString());
+                File.WriteAllText(Lib.Constants.ConfigPath, configs.ToString());
             }
             catch (Exception ex)
             {
@@ -84,7 +79,7 @@ namespace OfpLauncher
 
             try
             {
-                Process.Start($"{CurrentPath}/ArmAResistance.exe", $"{parameters}");
+                Process.Start($"{Lib.Constants.CurrentPath}/ArmAResistance.exe", $"{parameters}");
             }
             catch (Exception ex)
             {
@@ -103,8 +98,8 @@ namespace OfpLauncher
 
             try
             {
-                Process.Start($"{CurrentPath}/lockmouse2.exe", $"-minimize -center -quit");
-                Process.Start($"{CurrentPath}/ArmAResistance.exe", $"{parameters} -window -x={WindowedX} -y={WindowedY}");
+                Process.Start($"{Lib.Constants.CurrentPath}/lockmouse2.exe", $"-minimize -center -quit");
+                Process.Start($"{Lib.Constants.CurrentPath}/ArmAResistance.exe", $"{parameters} -window -x={Lib.Constants.WindowedX} -y={Lib.Constants.WindowedY}");
             }
             catch (Exception ex)
             {
@@ -137,65 +132,18 @@ namespace OfpLauncher
 
         private void btnSetup32_Click(object sender, EventArgs e)
         {
-            Process.Start($"{CurrentPath}/setup-x86.reg");
+            Process.Start($"{Lib.Constants.CurrentPath}/setup-x86.reg");
         }
 
         private void btnSetup64_Click(object sender, EventArgs e)
         {
-            Process.Start($"{CurrentPath}/setup-x64.reg");
+            Process.Start($"{Lib.Constants.CurrentPath}/setup-x64.reg");
         }
 
-        private void AspectRatioPatch(Dictionary<string, string> values)
+        private void btnAspectRatio_Click(object sender, EventArgs e)
         {
-            var username = Interaction.InputBox("수정할 컨픽의 사용자명을 입력하세요", "해상도 패치");
-            var file = new FileInfo($"{CurrentPath}/Users/{username}/UserInfo.cfg");
-            if (file.Exists)
-            {
-                try
-                {
-                    var cfg = CfgManager.Read(file);
-                    foreach (var v in values)
-                    {
-                        cfg.Configs[v.Key] = v.Value;
-                    }
-                    CfgManager.Write(cfg, file);
-                    MessageBox.Show("해상도 패치가 완료되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"작업 도중에 에러가 발생하였습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("패치할 cfg 파일이 존재하지 않는 것 같습니다.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnWide_Click(object sender, EventArgs e)
-        {
-            var WideValues = new Dictionary<string, string>() {
-                { "fovTop", "0.750000;" },
-                { "fovLeft", "1.333333;" },
-                { "uiTopLeftX", "0.125000;" },
-                { "uiTopLeftY", "0.000000;" },
-                { "uiBottomRightX", "0.875000;" },
-                { "uiBottomRightY", "1.000000;" },
-            };
-            AspectRatioPatch(WideValues);
-        }
-
-        private void btnWideRollback_Click(object sender, EventArgs e)
-        {
-            var DefaultValues = new Dictionary<string, string>() {
-                { "fovTop", "0.750000;" },
-                { "fovLeft", "1.000000;" },
-                { "uiTopLeftX", "0.000000;" },
-                { "uiTopLeftY", "0.000000;" },
-                { "uiBottomRightX", "1.000000;" },
-                { "uiBottomRightY", "1.000000;" },
-            };
-            AspectRatioPatch(DefaultValues);
+            var aspect = new frmAspectRatio();
+            aspect.ShowDialog();
         }
 
         private void btnServerConfig_Click(object sender, EventArgs e)
@@ -209,7 +157,7 @@ namespace OfpLauncher
             var mods = $"-mod={SelectedMod}";
             try
             {
-                Process.Start($"{CurrentPath}/ArmAResistance_Server.exe", $"-nomap {mods} -port=2302 -config=server.cfg -netlog");
+                Process.Start($"{Lib.Constants.CurrentPath}/ArmAResistance_Server.exe", $"-nomap {mods} -port=2302 -config=server.cfg -netlog");
             }
             catch (Exception ex)
             {
